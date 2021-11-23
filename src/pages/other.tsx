@@ -11,7 +11,7 @@ import styles from "../styles/Home.module.css";
 
 import { wrapper } from "../app/store";
 
-const IndexPage: NextPage = () => {
+const Other: NextPage = () => {
 	const dispatch = useAppDispatch();
 	const { lastUpdate, light } = useAppSelector(selectClock);
 
@@ -31,8 +31,8 @@ const IndexPage: NextPage = () => {
 				<br />
 				<br />
 				<nav>
-					<Link href="/other">
-						<a className={styles.link}>Other &gt;</a>
+					<Link href="/">
+						<a className={styles.link}>Home &gt;</a>
 					</Link>
 				</nav>
 			</header>
@@ -40,8 +40,8 @@ const IndexPage: NextPage = () => {
 	);
 };
 
-export const getStaticProps = wrapper.getStaticProps((store) => () => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => () => {
 	store.dispatch(serverRenderClock(true));
 });
 
-export default IndexPage;
+export default Other;
