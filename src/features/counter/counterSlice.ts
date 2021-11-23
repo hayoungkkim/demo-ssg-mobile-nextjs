@@ -50,8 +50,12 @@ export const counterSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(HYDRATE, (state, action: any) => {
-				console.log("HYDRATE", state, action.payload.counter);
-				return { ...state, ...action.payload.counter };
+				const nextState = {
+					...state,
+					...action.payload.counter,
+				};
+				if (state.value) nextState.value = state.value;
+				return nextState;
 			})
 			.addCase(incrementAsync.pending, (state) => {
 				state.status = "loading";

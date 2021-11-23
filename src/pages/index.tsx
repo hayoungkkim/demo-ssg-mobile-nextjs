@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { useAppDispatch, useAppSelector, useInterval } from "../app/hooks";
 
 import { selectClock, startClock, serverRenderClock } from "../features/clock/clockSlice";
+import { increment } from "../features/counter/counterSlice";
 
 import Counter from "../features/counter/Counter";
 import Clock from "../features/clock/Clock";
@@ -42,6 +43,7 @@ const IndexPage: NextPage = () => {
 
 export const getStaticProps = wrapper.getStaticProps((store) => () => {
 	store.dispatch(serverRenderClock(true));
+	store.dispatch(increment());
 });
 
 export default IndexPage;

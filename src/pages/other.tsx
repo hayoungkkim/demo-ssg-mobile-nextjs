@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 
 import { useAppDispatch, useAppSelector, useInterval } from "../app/hooks";
+import { increment } from "../features/counter/counterSlice";
 
 import { selectClock, startClock, serverRenderClock } from "../features/clock/clockSlice";
 
@@ -42,6 +43,7 @@ const Other: NextPage = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => () => {
 	store.dispatch(serverRenderClock(true));
+	store.dispatch(increment());
 });
 
 export default Other;
