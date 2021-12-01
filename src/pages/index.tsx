@@ -1,49 +1,57 @@
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
+
 import type { NextPage } from "next";
 
-import { useAppDispatch, useAppSelector, useInterval } from "../app/hooks";
+import { useAppSelector } from "../app/hooks";
 
-import { selectClock, startClock, serverRenderClock } from "../features/clock/clockSlice";
-import { increment } from "../features/counter/counterSlice";
+import { selectItem, getItems } from "../features/item/itemSlice";
 
-import Counter from "../features/counter/Counter";
-import Clock from "../features/clock/Clock";
-import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import { ItemCard } from "../features/item/ItemCard";
+import { ItemGrid } from "../features/item/ItemGrid";
 
 import { wrapper } from "../app/store";
 
 const IndexPage: NextPage = () => {
-	const dispatch = useAppDispatch();
-	const { lastUpdate, light } = useAppSelector(selectClock);
-
-	useInterval(() => {
-		dispatch(startClock());
-	}, 1000);
+	const { itemList } = useAppSelector(selectItem);
 
 	return (
-		<div className={styles.container}>
-			<header className={styles.header}>
-				<Counter />
-				<br />
-				<br />
-				<br />
-				<Clock lastUpdate={lastUpdate} light={light} />
-				<br />
-				<br />
-				<br />
-				<nav>
-					<Link href="/other">
-						<a className={styles.link}>Other &gt;</a>
-					</Link>
-				</nav>
-			</header>
-		</div>
+		<>
+			<Tabs>
+				<TabList>
+					<Tab>One</Tab>
+					<Tab>Two</Tab>
+					<Tab>Three</Tab>
+				</TabList>
+
+				<TabPanels>
+					<TabPanel>
+						<p>one!</p>
+					</TabPanel>
+					<TabPanel>
+						<p>two!</p>
+					</TabPanel>
+					<TabPanel>
+						<p>three!</p>
+					</TabPanel>
+				</TabPanels>
+			</Tabs>
+			<Box as="section" p="12">
+				<ItemGrid>
+					{itemList.map((item) => (
+						<ItemCard key={item.item_id} item={item} />
+					))}
+				</ItemGrid>
+			</Box>
+		</>
 	);
 };
 
-export const getStaticProps = wrapper.getStaticProps((store) => () => {
-	store.dispatch(serverRenderClock(true));
-	store.dispatch(increment());
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+	await store.dispatch(getItems());
+
+	return {
+		props: {},
+	};
 });
 
 export default IndexPage;

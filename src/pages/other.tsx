@@ -41,9 +41,13 @@ const Other: NextPage = () => {
 	);
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => () => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
 	store.dispatch(serverRenderClock(true));
 	store.dispatch(increment());
+
+	return {
+		props: {},
+	};
 });
 
 export default Other;

@@ -3,10 +3,12 @@ import { createWrapper } from "next-redux-wrapper";
 
 import counterReducer from "../features/counter/counterSlice";
 import clockReducer from "../features/clock/clockSlice";
+import itemReducer from "../features/item/itemSlice";
 
 const rootReducer = combineReducers({
 	counter: counterReducer,
 	clock: clockReducer,
+	item: itemReducer,
 });
 
 export const makeStore = () => {
