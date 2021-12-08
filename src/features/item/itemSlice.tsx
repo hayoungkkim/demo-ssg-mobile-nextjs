@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
-import type { AppState } from "../../app/store";
+import type { AppState } from "@/app/store";
 
 export interface ItemState {
 	item_id: string;

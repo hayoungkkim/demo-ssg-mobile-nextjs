@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
 
-import { useAppDispatch, useAppSelector, useInterval } from "../app/hooks";
-import { increment } from "../features/counter/counterSlice";
+import { useAppDispatch, useAppSelector, useInterval } from "@/app/hooks";
+import { increment } from "@/features/counter/counterSlice";
 
-import { selectClock, startClock, serverRenderClock } from "../features/clock/clockSlice";
+import { selectClock, startClock, serverRenderClock } from "@/features/clock/clockSlice";
 
-import Counter from "../features/counter/Counter";
-import Clock from "../features/clock/Clock";
+import Counter from "@/features/counter/Counter";
+import Clock from "@/features/clock/Clock";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import styles from "@/styles/Home.module.css";
 
-import { wrapper } from "../app/store";
+import { wrapper } from "@/app/store";
 
 const Other: NextPage = () => {
 	const dispatch = useAppDispatch();

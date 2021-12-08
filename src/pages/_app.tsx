@@ -1,9 +1,9 @@
 import { ChakraProvider } from "@chakra-ui/react";
 
-import theme from "../theme";
+import theme from "@/theme";
 import type { AppProps } from "next/app";
 
-import { wrapper } from "../app/store";
+import { wrapper } from "@/app/store";
 
 export const MyApp = ({ Component, pageProps }: AppProps) => {
 	return (
