@@ -11,6 +11,8 @@ import { ItemGrid } from "@/features/item/ItemGrid";
 
 import { wrapper } from "@/app/store";
 
+import { mapItem } from "@/entities/item";
+
 const IndexPage: NextPage = () => {
 	const { itemList } = useAppSelector(selectItem);
 
@@ -37,8 +39,8 @@ const IndexPage: NextPage = () => {
 			</Tabs>
 			<Box as="section" p="12">
 				<ItemGrid>
-					{itemList.map((item) => (
-						<ItemCard key={item.item_id} item={item} />
+					{itemList.map(mapItem).map((item) => (
+						<ItemCard key={item.itemId} item={item} />
 					))}
 				</ItemGrid>
 			</Box>

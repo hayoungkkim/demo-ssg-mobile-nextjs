@@ -1,38 +1,16 @@
-import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
+import network from "@/network";
 
 import type { AppState } from "@/app/store";
 
-export interface ItemState {
-	item_id: string;
-	item_name: string;
-	brand_name?: string;
-	item_link?: string;
-	strike_out_price?: string;
-	display_price?: string;
-	is_adult_item?: boolean;
-	ItemImages?: [
-		{
-			item_id: number;
-			src: string;
-		}
-	];
-}
-
-export interface ItemsState {
-	itemList?: ItemState[];
-	status: "idle" | "loading" | "failed";
-}
-
-const initialState: ItemsState = {
+const initialState: any = {
 	itemList: [],
-	status: "idle",
 };
 
 export const getItems = createAsyncThunk("item/getItems", async () => {
-	const response = await axios.get("http://localhost:3065/api/items");
-	return response.data;
+	const itemData = await network.item().fetchItem({});
+	return itemData;
 });
 
 export const itemSlice = createSlice({
