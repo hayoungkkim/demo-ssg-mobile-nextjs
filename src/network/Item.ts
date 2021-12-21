@@ -1,9 +1,9 @@
-import axios from "axios";
+import Base from "./Base";
 import { IItemList } from "@/entities/item";
 
-export default class Item {
-	public async fetchItem(params: any): Promise<IItemList> {
-		const response = await axios.get("http://localhost:3065/api/items");
+export default class Item extends Base {
+	public async fetchItem(): Promise<IItemList> {
+		const response = await this.ajaxGet("/items");
 		return response.data;
 	}
 }
