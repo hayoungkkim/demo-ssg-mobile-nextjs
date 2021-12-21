@@ -1,4 +1,5 @@
-import { AspectRatio, Box, Button, HStack, Image, Link, Skeleton, Stack, StackProps, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
+import Link from "next/link";
+import { AspectRatio, Box, Button, HStack, Image, Link as ChakraLink, Skeleton, Stack, StackProps, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
 import { Rating } from "./Rating";
 import { FavouriteButton } from "./FavouriteButton";
 import { PriceTag } from "./PriceTag";
@@ -43,8 +44,10 @@ export const ItemCard = (props: Props) => {
 				<Button colorScheme="blue" isFullWidth>
 					Add to cart
 				</Button>
-				<Link href={itemLink} textDecoration="underline" fontWeight="medium" color={useColorModeValue("gray.600", "gray.400")}>
-					Quick shop
+				<Link href={itemLink} passHref>
+					<ChakraLink textDecoration="underline" fontWeight="medium" color={useColorModeValue("gray.600", "gray.400")}>
+						Quick shop
+					</ChakraLink>
 				</Link>
 			</Stack>
 		</Stack>
